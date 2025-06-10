@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recruitment Document Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.0.6/pizzip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.28.0/docxtemplater.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        input[type="date"],
+        input[type="text"] {
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="date"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        button {
+            transition: all 0.2s ease-in-out;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl max-w-4xl w-full">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Recruitment Document Generator</h1>
+
+        <div class="bg-gray-50 p-4 rounded-md shadow-sm mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Recruitment Details</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="jobOrderStartDate">Job Order Start Date</label>
+                    <input type="date" id="jobOrderStartDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="jobOrderEndDate">Job Order End Date</label>
+                    <input type="date" id="jobOrderEndDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="jobOrderState">Job Order State</label>
+                    <input type="text" id="jobOrderState" placeholder="e.g., California" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="sundayPublishing1Date">Sunday Publishing 1 Date</label>
+                    <input type="date" id="sundayPublishing1Date" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="sundayPublishing2Date">Sunday Publishing 2 Date</label>
+                    <input type="date" id="sundayPublishing2Date" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="sundayNewspaperName">Sunday Newspaper Name</label>
+                    <input type="text" id="sundayNewspaperName" placeholder="e.g., The New York Times" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="14dPublicationStartDate">14-Day Publication Start Date</label>
+                    <input type="date" id="14dPublicationStartDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="14dPublicationEndDate">14-Day Publication End Date</label>
+                    <input type="date" id="14dPublicationEndDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="14dPublicationName">14-Day Publication Name</label>
+                    <input type="text" id="14dPublicationName" placeholder="e.g., Indeed.com" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="1dAdvertisementDate">1-Day Advertisement Date</label>
+                    <input type="date" id="1dAdvertisementDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="1dAdvertisementName">1-Day Advertisement Name</label>
+                    <input type="text" id="1dAdvertisementName" placeholder="e.g., Local Gazette" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="websitePostStartDate">Website Post Start Date</label>
+                    <input type="date" id="websitePostStartDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="websitePostEndDate">Website Post End Date</label>
+                    <input type="date" id="websitePostEndDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="internalPostStartDate">Internal Post Start Date</label>
+                    <input type="date" id="internalPostStartDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="internalPostEndDate">Internal Post End Date</label>
+                    <input type="date" id="internalPostEndDate" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label for="positionTitle">Position Title</label>
+                    <input type="text" id="positionTitle" placeholder="e.g., Software Engineer" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div>
+                    <label for="rejectedApplicants">Rejected Applicants (Number)</label>
+                    <input type="text" id="rejectedApplicants" placeholder="e.g., 5" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" id="companyName" placeholder="e.g., ABC Corporation" class="w-full p-3 border border-gray-300 rounded-md text-gray-800">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <button id="downloadCoverPageBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md shadow-md">
+                    Download COVER PAGE
+                </button>
+                <button id="downloadAffidavitBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md shadow-md">
+                    Download RECRUITMENT AFFIDAVIT
+                </button>
+                <button id="downloadReportBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-md shadow-md">
+                    Download RECRUITMENT REPORT
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Helper to format date to MM/DD/YYYY
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const year = date.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+
+        // Function to set all date inputs to today's date
+        function setTodayDateToAllDateInputs() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = (today.getMonth() + 1).toString().padStart(2, '0');
+            const day = today.getDate().toString().padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`; // YYYY-MM-DD for input type="date"
+
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                input.value = formattedDate;
+            });
+        }
+
+        // Function to find the minimum and maximum date from all date inputs
+        function findMinMaxRecruitmentDates(data) {
+            let minDate = null;
+            let maxDate = null;
+
+            const dateFields = [
+                data.jobOrderStartDate, data.jobOrderEndDate,
+                data.sundayPublishing1Date, data.sundayPublishing2Date,
+                data.d14PublicationStartDate, data.d14PublicationEndDate,
+                data.d1AdvertisementDate,
+                data.websitePostStartDate, data.websitePostEndDate,
+                data.internalPostStartDate, data.internalPostEndDate
+            ];
+
+            dateFields.forEach(dateString => {
+                if (dateString) {
+                    const date = new Date(dateString);
+                    if (!minDate || date < minDate) {
+                        minDate = date;
+                    }
+                    if (!maxDate || date > maxDate) {
+                        maxDate = date;
+                    }
+                }
+            });
+
+            return {
+                recruitmentStartDate: minDate ? formatDate(minDate.toISOString().slice(0, 10)) : '',
+                recruitmentEndDate: maxDate ? formatDate(maxDate.toISOString().slice(0, 10)) : ''
+            };
+        }
+
+        // Function to get form data
+        function getFormData() {
+            return {
+                jobOrderStartDate: document.getElementById('jobOrderStartDate').value,
+                jobOrderEndDate: document.getElementById('jobOrderEndDate').value,
+                jobOrderState: document.getElementById('jobOrderState').value,
+                sundayPublishing1Date: document.getElementById('sundayPublishing1Date').value,
+                sundayPublishing2Date: document.getElementById('sundayPublishing2Date').value,
+                sundayNewspaperName: document.getElementById('sundayNewspaperName').value,
+                d14PublicationStartDate: document.getElementById('14dPublicationStartDate').value,
+                d14PublicationEndDate: document.getElementById('14dPublicationEndDate').value,
+                d14PublicationName: document.getElementById('14dPublicationName').value,
+                d1AdvertisementDate: document.getElementById('1dAdvertisementDate').value,
+                d1AdvertisementName: document.getElementById('1dAdvertisementName').value,
+                websitePostStartDate: document.getElementById('websitePostStartDate').value,
+                websitePostEndDate: document.getElementById('websitePostEndDate').value,
+                internalPostStartDate: document.getElementById('internalPostStartDate').value,
+                internalPostEndDate: document.getElementById('internalPostEndDate').value,
+                positionTitle: document.getElementById('positionTitle').value,
+                rejectedApplicants: document.getElementById('rejectedApplicants').value,
+                companyName: document.getElementById('companyName').value
+            };
+        }
+
+        // Template URLs (Adjusted to relative paths for files in the same folder)
+        const templateUrls = {
+            coverPage: 'COVER PAGE FORMAT.docx',
+            affidavit: 'Recruitment Affidavit.docx',
+            report: 'Recruitment Report Format.docx'
+        };
+
+        // Function to load template and generate DOCX
+        async function generateDocx(templateUrl, data, filename) {
+            try {
+                const response = await fetch(templateUrl);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch template: ${response.statusText}. Ensure '${templateUrl}' is in the same folder as this HTML file.`);
+                }
+                const templateContent = await response.arrayBuffer();
+
+                const zip = new PizZip(templateContent);
+                const doc = new docxtemplater(zip, {
+                    paragraphLoop: true,
+                    linebreaks: true,
+                });
+
+                // Prepare data for docxtemplater
+                const processedData = {};
+                for (const key in data) {
+                    if (key.includes('Date') && data[key]) { // Format all date fields for display
+                        processedData[key] = formatDate(data[key]);
+                    } else {
+                        processedData[key] = data[key];
+                    }
+                }
+
+                // Add calculated recruitment dates
+                const { recruitmentStartDate, recruitmentEndDate } = findMinMaxRecruitmentDates(data);
+                processedData.recruitmentStartDate = recruitmentStartDate;
+                processedData.recruitmentEndDate = recruitmentEndDate;
+
+                // Handle specific placeholders for Affidavit if needed, e.g., Employer Name and Date
+                // This assumes "Employer Name" is not part of the form but is a static placeholder
+                // and "Date" in affidavit should be current date if not specifically a form field.
+                if (filename === 'RECRUITMENT AFFIDAVIT.doc') {
+                     if (!processedData.employerName) {
+                        processedData.employerName = "[Employer Name]"; // Placeholder if no form field exists
+                    }
+                    if (!processedData.date) {
+                        processedData.date = formatDate(new Date().toISOString().slice(0, 10)); // Current date
+                    }
+                }
+
+                doc.setData(processedData);
+                doc.render();
+
+                const out = doc.getZip().generate({
+                    type: "blob",
+                    mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    compression: "DEFLATE",
+                });
+                saveAs(out, filename);
+
+            } catch (error) {
+                console.error("Error generating document:", error);
+                alert(`Error generating document. Please check the console for details. Make sure your template files (${templateUrls.coverPage}, ${templateUrls.affidavit}, ${templateUrls.report}) are in the same folder as this HTML file and have the correct placeholders.`);
+            }
+        }
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            setTodayDateToAllDateInputs(); // Set default dates on page load
+
+            document.getElementById('downloadCoverPageBtn').addEventListener('click', () => {
+                const data = getFormData();
+                generateDocx(templateUrls.coverPage, data, 'COVER PAGE.doc');
+            });
+
+            document.getElementById('downloadAffidavitBtn').addEventListener('click', () => {
+                const data = getFormData();
+                generateDocx(templateUrls.affidavit, data, 'RECRUITMENT AFFIDAVIT.doc');
+            });
+
+            document.getElementById('downloadReportBtn').addEventListener('click', () => {
+                const data = getFormData();
+                generateDocx(templateUrls.report, data, 'RECRUITMENT REPORT.doc');
+            });
+        });
+    </script>
+</body>
+</html>

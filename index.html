@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recruitment Document Generator</title>
+    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Libraries for DOCX templating -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.0.6/pizzip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.28.0/docxtemplater.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -265,6 +267,8 @@
                     if (key.includes('Date') && data[key]) { // Format all date fields for display
                         processedData[key] = formatDate(data[key]);
                     } else {
+                        // For non-date fields, if you want them bold, you need to bold the placeholders in the .docx template itself.
+                        // docxtemplater inherits formatting from the placeholder.
                         processedData[key] = data[key];
                     }
                 }
@@ -275,8 +279,6 @@
                 processedData.recruitmentEndDate = recruitmentEndDate;
 
                 // Handle specific placeholders for Affidavit if needed, e.g., Employer Name and Date
-                // This assumes "Employer Name" is not part of the form but is a static placeholder
-                // and "Date" in affidavit should be current date if not specifically a form field.
                 if (filename === 'RECRUITMENT AFFIDAVIT.doc') {
                      if (!processedData.employerName) {
                         processedData.employerName = "[Employer Name]"; // Placeholder if no form field exists
